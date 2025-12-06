@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -14,6 +15,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/products', ProductController::class);
     Route::resource('/categories', CategoryController::class);
+    Route::resource('/customers', CustomerController::class);
 });
 
 Route::middleware('auth')->group(function () {

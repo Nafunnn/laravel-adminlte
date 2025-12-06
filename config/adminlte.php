@@ -332,6 +332,12 @@ return [
             'url' => 'admin/categories',
             'icon' => 'fas fa-fw fa-list',
         ],
+        ['header' => 'Customers'],
+        [
+            'text' => 'customers',
+            'url' => 'admin/customers',
+            'icon' => 'fas fa-fw fa-list',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
