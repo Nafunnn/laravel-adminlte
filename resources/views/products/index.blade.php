@@ -35,7 +35,7 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->category->name }}</td>
                             <td>{{ $product->price }}</td>
-                            <td>{{ $product->stock }}</td>
+                            <td>{{ $product->getStock ? $product->getStock->quantity : 0 }}</td>
                             <td>{{ $product->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
                             <td>
                                 <a href="{{ url('admin/products/' . $product->id . '/edit') }}" class="btn btn-primary">Edit</a>

@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="stock" class="form-label">Stok</label>
-                        <input type="number" name="stock" class="form-control" placeholder="Masukkan jumlah stok" value="{{ old('stock', $product->stock) }}">
+                        <input type="number" name="stock" class="form-control" placeholder="Masukkan jumlah stok" value="{{ old('stock', $product->getStock->quantity) }}">
                         @error('stock')
                             <div class="text-danger small">{{ $message }}</div>
                         @enderror

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\StockProduct;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -53,10 +54,15 @@ class ProductController extends Controller
             'name' => $validated['name'],
             'description' => $validated['description'],
             'price' => $validated['price'],
-            'stock' => $validated['stock'],
+            'stock' => 0,
             'category_id' => $validated['category_id'],
             'image' => $validated['image'],
             'is_active' => $validated['is_active'],
+        ]);
+
+        StockProduct::create([
+            'product_id' => $product->id,
+            'quantity' => $validated['stock'],
         ]);
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan');
@@ -111,11 +117,22 @@ class ProductController extends Controller
             'name' => $validated['name'],
             'description' => $validated['description'],
             'price' => $validated['price'],
-            'stock' => $validated['stock'],
+            'stock' => 0,
             'category_id' => $validated['category_id'],
             'image' => $validated['image'],
             'is_active' => $validated['is_active'],
         ]);
+
+        if ($product->getStock) {
+            $product->getStock->update([
+                'quantity' => $validated['stock'],
+            ]);
+        } else {
+            StockProduct::create([
+                'product_id' => $product->id,
+                'quantity' => $validated['stock'],
+            ]);
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui');
     }
